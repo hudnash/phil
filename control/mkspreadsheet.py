@@ -6,19 +6,24 @@ MKSPREADSHEET.PY
 Created on Wed Jun 22 12:25:52 2022
 
 @author: hudsonnash
+
+OBJECTIVE: Extract and export/post contents of audit reports' "STATUS OF 
+           IMPLEMENTATION OF PRIOR YEAR’S AUDIT RECOMMENDATIONS" tables
 """
 import os
-import tabula as tab
+from tabula import read_pdf, convert_into_by_batch
 import re
 import pandas as pd
 
-def lamitan(udir):
+def contains_tables(udir):
+    for file in os.listdir(udir):
+        convert_into_by_batch
+
+def default(udir): # Made with Lamitan City in mind
     for file in os.listdir(udir):
         if os.path.splitext(file)[1] == '.pdf':
-            dfs = tab.read_pdf(os.path.join(udir,file),lattice=True,pages='all')
-            for df in dfs:
-                df.rename(index={0: "x", 1: "y", 2: "z"})
-            return pd.concat(dfs)
+            dfs = read_pdf(os.path.join(udir,file),lattice=True,pages='all',multiple_tables=False)
+    return pd.concat(dfs)
         
 def fix_my_columns(dfs):
     def prompt_user_merge_cols(dfs):

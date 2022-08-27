@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-CLEAN_DUMP_TO_DIR.PY (DRIVER FILE)
+CLEAN_DUMP_TO_DIR.PY
 
 Created on Thurs June 23, 2022 at 5:50 PM
 
@@ -11,7 +11,6 @@ Created on Thurs June 23, 2022 at 5:50 PM
 from zipfile import ZipFile
 import os
 from shutil import rmtree
-import subprocess
 def unzip(diz,diu):
     z_list = [os.path.join(diz,f) for f in os.listdir(diz) if os.path.isfile(os.path.join(diz,f)) and f[0] != '.']
     for z in z_list:
